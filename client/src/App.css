@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hourglass {
+  display: block;
+  /* background: #dad8d2; */
+  margin: 3em auto;
+  width: 2em;
+  height: 4em;
+  -webkit-animation: hourglass 1s linear infinite;
+  animation: hourglass 1s linear infinite;
+}
+
+.outer {
+  fill: #00b7c6;
+}
+
+.middle {
+  fill: #fff;
+}
+
+@-webkit-keyframes hourglass {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: inset #00b7c6 0 0em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -4em 0 0;
+  }
+  80% {
+    transform: rotate(0deg);
+    box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -2em 0 0;
+  }
+  100% {
+    transform: rotate(180deg);
+    box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -2em 0 0;
+  }
+}
+
+@keyframes hourglass {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: inset #00b7c6 0 0em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -4em 0 0;
+  }
+  80% {
+    transform: rotate(0deg);
+    box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -2em 0 0;
+  }
+  100% {
+    transform: rotate(180deg);
+    box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0,
+      inset #00b7c6 0 -2em 0 0;
+  }
+}
