@@ -5,7 +5,7 @@ This project is a part of the assessment for Jalan Technologies. It provides a s
 ## Project URLs
 
 - **Backend**: [Zoo Ticketing Backend](https://jalan-zoo-ticketing.onrender.com/)
-(Please allow backend service to be up in ~50 seconds [since I'm using free plan to host backend service] after ~50 seconds, it will keep working)
+(Please allow backend service to be up in ~50 seconds [since I'm using free plan to host] after ~50 seconds, it will keep working)
 - **Frontend**: [Zoo Ticketing Frontend](https://zoo-ticketing.onrender.com/)
 
 ## Technologies Used
