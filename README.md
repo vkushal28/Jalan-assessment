@@ -67,7 +67,7 @@ npm start-dev
 *Enter Guests Details*
 
 ![Screenshot 1](screenshots/verifyInvalidTicket.png)
-*Verify Valid Ticket*
+*Verify InValid Ticket*
 
 ![Screenshot 1](screenshots/verifyValidTicket.png)
-*Verify InValid Ticket*
+*Verify Valid Ticket*
