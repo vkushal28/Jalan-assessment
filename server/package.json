@@ -1,0 +1,28 @@
+{
+  "name": "zoo-ticketing",
+  "version": "1.0.0",
+  "description": "jalan-assessment-backend server",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production nodemon ./bin/www",
+    "start-dev": "NODE_ENV=development  ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vkushal28/Jalan-assessment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vkushal28/Jalan-assessment/issues"
+  },
+  "homepage": "https://github.com/vkushal28/Jalan-assessment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.0.3"
+  }
+}
