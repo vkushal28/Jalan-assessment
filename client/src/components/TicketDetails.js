@@ -7,21 +7,20 @@ const TicketDetails = ({ ticket, index }) => {
     }
 
     return (
-        <div>
-            <h2>Ticket {index} (Created on {moment(ticket?.created_at).format('MMMM Do YYYY, h:mm a')}):</h2>
-            {/* <p>Total Charges: {ticket.totalCharges}</p>
-      <ul>
-        {ticket.guests.map((guest, index) => (
-          <li key={index}>{`Guest ${index + 1}: ${guest.name} (Age: ${guest.age})`}</li>
-        ))}
-      </ul> */}
-            <p>Total Charges: {ticket.totalCharges}</p>
-            <h3>Guests:</h3>
-            {ticket?.guests?.map((guest, index) => (
-                <div key={index}>
-                    <p>{`${guest.name}, Age: ${guest.age}`}</p>
+        <div class="card">
+                <div class="card-header">
+                    <h4>Ticket #{ticket.uid}</h4>
+                    <p>{moment(ticket.created_at).format('MMMM Do YYYY, h:mm a')}</p>
+                    <h3>Total Charges: {ticket.totalCharges}</h3>
                 </div>
-            ))}
+                <div class="card-body">
+                    <h3>Guests:</h3>
+                    {ticket?.guests?.map((guest, index) => (
+                        <div key={index}>
+                            <p>{index+1}. {`${guest.name}, Age: ${guest.age}`}</p>
+                        </div>
+                    ))}
+                </div>
         </div>
     );
 };

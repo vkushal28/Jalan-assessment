@@ -1,14 +1,14 @@
 import './App.css';
 import { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import GuestForm from './components/GuestForm';
-import TicketDetails from './components/TicketDetails';
 import ticketService from './services/ticketService';
 import Loader from './common/Loader';
+import VerifyTickets from './components/VerifyTickets';
+import DisplayAllTickets from './components/DisplayAllTickets';
 
 function App() {
   const [allTickets, setAllTickets] = useState([]);
-  const [ticket, setTicket] = useState(null);
-  const [selectedTicketId, setSelectedTicketId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const [areGuestsAdded, setAreGuestsAdded] = useState(false);
@@ -29,15 +29,6 @@ function App() {
     }
   };
 
-  // const handleGetTicketDetails = async (ticketId) => {
-  //   try {
-  //     const fetchedTicket = await ticketService.getTicketDetails(ticketId);
-  //     setTicket(fetchedTicket);
-  //   } catch (error) {
-  //     // Handle error, e.g., display an error message
-  //     console.error('Error getting ticket details:', error);
-  //   }
-  // };
 
   useEffect(() => {
     handleGetAllTickets();
@@ -61,40 +52,38 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Zoo Ticketing System</h1>
-      <GuestForm
-        onAddGuest={handleAddGuest}
-        loading={isLoading}
-        guestAdded={areGuestsAdded}
-        resetAddGuest={resetAddGuest}
-      />
+    <Router>
+      <div className="App">
+        <h1>Zoo Ticketing System</h1>
 
-      {/* <label>
-        Ticket ID:
-        <input
-          type="text"
-          value={selectedTicketId}
-          onChange={(e) => setSelectedTicketId(e.target.value)}
-        />
-      </label>
-      <button onClick={handleGetTicketDetails}>Get Ticket Details</button> */}
+        <nav>
+          <Link to="/">
+            <button className="nav-button">Home</button>
+          </Link>
+          <Link to="/verify-tickets">
+            <button className="nav-button">Verify Tickets</button>
+          </Link>
+        </nav>
 
+        <Routes>
+          <Route path="/" element={<>
+            <GuestForm
+              onAddGuest={handleAddGuest}
+              loading={isLoading}
+              guestAdded={areGuestsAdded}
+              resetAddGuest={resetAddGuest}
+            />
+            <hr />
+            {isLoadingAllTickets && <Loader />}
+            {allTickets && allTickets.length ? <DisplayAllTickets allTickets={allTickets}/> :
+              !isLoadingAllTickets ? <div>No ticket details available</div>
+                : null}
+          </>} />
+          <Route path="/verify-tickets" element={<VerifyTickets />} />
+        </Routes>
+      </div>
+    </Router>
 
-      <hr />
-
-      {isLoadingAllTickets && <Loader />}
-      {allTickets && allTickets.length ? allTickets.map((tick, index) => (
-        <ol key={index}>
-          <li>
-            <TicketDetails ticket={tick} index={index+1}/>
-          </li>
-        </ol>
-      )) :
-        !isLoadingAllTickets ? <div>No ticket details available</div>
-          : null}
-      {/* <TicketDetails ticket={ticket} /> */}
-    </div>
   );
 }
 
