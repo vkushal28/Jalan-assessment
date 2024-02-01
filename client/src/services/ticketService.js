@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3004";
 
 
 const ticketService = {
@@ -33,6 +33,15 @@ const ticketService = {
             return error?.response?.data
         }
     },
+
+    deleteTicket: async (uid) => {
+        try {
+          const response = await axios.delete(`${API_BASE_URL}/ticket/${uid}`);
+          return response.data;
+        } catch (error) {
+          return error?.response?.data;
+        }
+      },
 };
 
 export default ticketService;

@@ -52,7 +52,7 @@ const getTicketDetails = async (req, res) => {
   }
 };
 
-const getAllTickets = async(req, res, next) => {
+const getAllTickets = async (req, res, next) => {
   try {
     const allTickets = await Ticket.find().sort({ created_at: -1 });
     res.json(allTickets);
@@ -62,8 +62,27 @@ const getAllTickets = async(req, res, next) => {
   }
 }
 
+const deleteTicket = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    if (!uid) {
+      return res.status(400).json({ error: 'Invalid UID' });
+    }
+    const ticket = await Ticket.findOneAndDelete({ uid });
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+    res.json({ message: 'Ticket deleted successfully', deletedTicket: ticket });
+
+  } catch (error) {
+    console.error('Error deleting ticket:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 module.exports = {
   issueTicket,
   getTicketDetails,
-  getAllTickets
+  getAllTickets,
+  deleteTicket
 };

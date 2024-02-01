@@ -75,7 +75,7 @@ function App() {
             />
             <hr />
             {isLoadingAllTickets && <Loader />}
-            {allTickets && allTickets.length ? <DisplayAllTickets allTickets={allTickets}/> :
+            {allTickets && allTickets.length ? <DisplayAllTickets allTickets={allTickets} deleteCB={reset}/> :
               !isLoadingAllTickets ? <div>No ticket details available</div>
                 : null}
           </>} />

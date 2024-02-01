@@ -2,12 +2,13 @@ import React from 'react'
 import TicketDetails from './TicketDetails'
 
 const DisplayAllTickets = ({
-    allTickets
+    allTickets,
+    deleteCB
 }) => {
     return (
         <div class='tickets-wrapper'>
             {allTickets?.map((tick, index) => (
-                <TicketDetails ticket={tick} index={index + 1} />
+                <TicketDetails ticket={tick} deleteCB={deleteCB}/>
             ))}
         </div>
     )

@@ -140,3 +140,8 @@
   border-radius: 0 0 10px 10px;
   background: #f6f2d7;
 }
+.delete-ticket {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

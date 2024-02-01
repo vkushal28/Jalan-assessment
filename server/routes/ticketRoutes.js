@@ -17,5 +17,7 @@ router.get('/all', ticketController.getAllTickets);
 // Route to get ticket details by ID
 router.get('/:ticketId', ticketController.getTicketDetails);
 
+// Route to delete a ticket
+router.delete('/:uid', ticketController.deleteTicket);
 
 module.exports = router
