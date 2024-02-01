@@ -10,7 +10,7 @@ const ticketService = {
             return response.data;
         } catch (error) {
             console.error('Error issuing ticket:', error);
-            throw error;
+            return error?.response?.data
         }
     },
 
@@ -20,7 +20,7 @@ const ticketService = {
             return response.data;
         } catch (error) {
             console.error('Error getting ticket details:', error);
-            throw error;
+            return error?.response?.data
         }
     },
 
@@ -30,7 +30,7 @@ const ticketService = {
             return response.data;
         } catch (error) {
             console.error('Error getting all tickets:', error);
-            throw error;
+            return error?.response?.data
         }
     },
 };

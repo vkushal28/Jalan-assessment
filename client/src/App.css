@@ -39,7 +39,6 @@
 
 .hourglass {
   display: block;
-  /* background: #dad8d2; */
   margin: 3em auto;
   width: 2em;
   height: 4em;
@@ -89,4 +88,55 @@
     box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0,
       inset #00b7c6 0 -2em 0 0;
   }
+}
+
+.nav-button {
+  margin-right: 10px;
+}
+
+.tickets-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around;
+  align-items: flex-start; */
+  gap: 20px; 
+}
+.card {
+  width: 300px;
+  border-radius: 10px;
+  margin: 50px;
+  /* background: #f6f2d7; */
+  overflow: hidden;
+}
+.card-header {
+  height: 150px;
+  border: 2px solid #836602;
+  /* border-bottom: 2px dotted #836602; */
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  background: #f6f2d7;
+}
+.card-header:before, .card-header:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 100%;
+  bottom: -12px;
+  border: 2px solid #836602;
+  box-sizing: border-box;
+}
+.card-header:before { 
+  left: -13px;
+}
+.card-header:after {
+  right: -13px;
+}
+.card-body {
+  height: auto; 
+  border: 2px solid #836602;
+  /* border-top: none; */
+  border-radius: 0 0 10px 10px;
+  background: #f6f2d7;
 }
