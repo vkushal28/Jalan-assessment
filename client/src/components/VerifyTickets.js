@@ -10,7 +10,7 @@ const VerifyTickets = () => {
     const [noData, setNoData] = useState(false);
 
     const handleGetTicketDetails = async () => {
-        if(selectedTicketId) {
+        if (selectedTicketId) {
             try {
                 setIsLoading(true);
                 const fetchedTicket = await ticketService.getTicketDetails(selectedTicketId);
@@ -35,7 +35,12 @@ const VerifyTickets = () => {
                     onChange={(e) => setSelectedTicketId(Math.max(0, parseInt(e.target.value)))}
                 />
             </label>
-            <button onClick={handleGetTicketDetails}>Get Ticket Details</button>
+            <button
+                onClick={handleGetTicketDetails}
+                disabled={isLoading || !selectedTicketId}
+            >
+                Get Ticket Details
+            </button>
             <hr />
             {isLoading && <Loader />}
             {
