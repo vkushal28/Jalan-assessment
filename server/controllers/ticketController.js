@@ -1,26 +1,23 @@
 const Ticket = require('../models/ticketModel');
 const autoIncrement = require('../utils/auto-increment');
 
-const calculateCharges = (age) => {
-  if (age <= 2) {
-    return 0;
-  } else if (age < 18) {
-    return 100;
-  } else if (age < 60) {
-    return 500;
-  } else {
-    return 300;
-  }
-};
+class TicketController {
 
-const issueTicket = async (req, res) => {
-  try {
-    const { guests } = req.body;
-    if (!guests || !Array.isArray(guests) || guests.length === 0) {
-      return res.status(400).json({ error: 'Invalid guests data' });
+  static calculateCharges = (age) => {
+    if (age <= 2) {
+      return 0;
+    } else if (age < 18) {
+      return 100;
+    } else if (age < 60) {
+      return 500;
+    } else {
+      return 300;
     }
+  };
+
+  static async issueTicket(guests) {
     const uid = await autoIncrement.getNumOfDocs(Ticket);
-    const totalCharges = guests.reduce((sum, guest) => sum + calculateCharges(guest.age), 0);
+    const totalCharges = guests.reduce((sum, guest) => sum + this.calculateCharges(guest.age), 0);
     const newTicket = new Ticket({
       guests,
       totalCharges,
@@ -28,61 +25,23 @@ const issueTicket = async (req, res) => {
       created_at: new Date()
     });
     await newTicket.save();
-    res.status(201).json(newTicket);
-  } catch (error) {
-    console.error('Error issuing ticket:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+    return newTicket;
+  };
 
-const getTicketDetails = async (req, res) => {
-  try {
-    const { ticketId } = req.params;
-    if (!ticketId) {
-      return res.status(400).json({ error: 'Invalid ticket ID' });
-    }
+  static async getTicketDetails(ticketId) {
     const ticket = await Ticket.findOne({ uid: ticketId });
-    if (!ticket) {
-      return res.status(404).json({ error: 'Ticket not found' });
-    }
-    res.json(ticket);
-  } catch (error) {
-    console.error('Error getting ticket details:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+    return ticket;
+  };
 
-const getAllTickets = async (req, res, next) => {
-  try {
-    const allTickets = await Ticket.find().sort({ created_at: -1 });
-    res.json(allTickets);
-  } catch (error) {
-    console.error('Error getting all tickets:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+  static async getAllTickets() {
+    const allTickets = await Ticket.find({ created_at: -1 });
+    return allTickets;
   }
-}
 
-const deleteTicket = async (req, res, next) => {
-  try {
-    const { uid } = req.params;
-    if (!uid) {
-      return res.status(400).json({ error: 'Invalid UID' });
-    }
+  static async deleteTicket(uid) {
     const ticket = await Ticket.findOneAndDelete({ uid });
-    if (!ticket) {
-      return res.status(404).json({ error: 'Ticket not found' });
-    }
-    res.json({ message: 'Ticket deleted successfully', deletedTicket: ticket });
-
-  } catch (error) {
-    console.error('Error deleting ticket:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return ticket;
   }
 }
 
-module.exports = {
-  issueTicket,
-  getTicketDetails,
-  getAllTickets,
-  deleteTicket
-};
+module.exports = TicketController;

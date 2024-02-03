@@ -15,7 +15,7 @@ const VerifyTickets = () => {
                 setIsLoading(true);
                 const fetchedTicket = await ticketService.getTicketDetails(selectedTicketId);
                 setTicket(fetchedTicket);
-                setNoData(Boolean(fetchedTicket.error));
+                setNoData(!Boolean(fetchedTicket));
             } catch (error) {
                 console.error('Error getting ticket details:', error);
             } finally {
